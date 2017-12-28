@@ -1,0 +1,26 @@
+group 'se.munhunger'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('io.swagger:swagger-jaxrs:1.5.16') {
+        exclude group: 'javax.ws.rs'
+    }
+    compile 'org.reflections:reflections:0.9.11'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.25.1'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.25.1'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0-b05'
+}
+
+war {
+    destinationDir(file("build/"))
+}

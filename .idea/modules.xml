@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/four-in-a-row.iml" filepath="$PROJECT_DIR$/.idea/modules/four-in-a-row.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/four-in-a-row_main.iml" filepath="$PROJECT_DIR$/.idea/modules/four-in-a-row_main.iml" group="four-in-a-row" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/four-in-a-row_test.iml" filepath="$PROJECT_DIR$/.idea/modules/four-in-a-row_test.iml" group="four-in-a-row" />
+    </modules>
+  </component>
+</project>
