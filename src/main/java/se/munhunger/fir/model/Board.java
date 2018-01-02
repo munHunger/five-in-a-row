@@ -18,6 +18,12 @@ public class Board {
     public List<Point> o = new ArrayList<>();
 
     @JsonIgnore
+    /**
+     * Board of integers for faster counting.
+     * 1  ==  x
+     * 0  ==  unclaimed
+     * -1 ==  o
+     */
     public int[][] board = new int[25][25];
 
     public void initArray() {
