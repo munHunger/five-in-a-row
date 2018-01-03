@@ -3,8 +3,11 @@ package se.munhunger.fir.evaluators;
 import se.munhunger.fir.model.Board;
 import se.munhunger.fir.model.Move;
 import se.munhunger.fir.model.Point;
+import se.munhunger.fir.model.Row;
+import se.munhunger.fir.util.Lines;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Marcus Münger
@@ -17,16 +20,21 @@ public class RandomAdjacent extends Evaluator {
 
     @Override
     public Optional<Move> evaluate(Board board) {
-        List<Point> points = new ArrayList<>();
-        points.addAll(board.o);
-        points.addAll(board.x);
-        for(Point adjacent : points)
-            for(int x = -1; x <= 1; x++)
-                for(int y = -1; y <= 1; y++)
-                    if(!(x == 0 && y == 0))
-                        if(adjacent.x + x >= 0 && adjacent.x + x < 25 && adjacent.y + y >= 0 && adjacent.y + y < 25)
-                            if(board.board[x+adjacent.x][y+adjacent.y] == 0)
-                                return Optional.of(new Move(board.x.size() <= board.o.size(), new Point(x + adjacent.x, y + adjacent.y)));
+        boolean isX = board.x.size() <= board.o.size();
+        Optional<Move> result = search(isX, isX, board);
+        if(!result.isPresent())
+            result = search(isX, !isX, board);
+        if(!result.isPresent())
+            return Optional.empty();
+        return result;
+    }
+
+    private Optional<Move> search(boolean isX, boolean search, Board board) {
+        for(int x = 0; x < 25; x++)
+            for(int y = 0; y < 25; y++)
+                if(board.board[x][y] == 0)
+                    if(!Lines.getAmountOfLengths(1, search, x, y, board).isEmpty())
+                        return Optional.of(new Move(isX, new Point(x, y)));
         return Optional.empty();
     }
 }

@@ -18,6 +18,6 @@ public class OpenThreeInRow extends Evaluator {
 
     @Override
     public Optional<Move> evaluate(Board board) {
-        return Optional.empty();
+        return Optional.empty(); //TBI
     }
 }
